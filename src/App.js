@@ -1,10 +1,9 @@
 import React from "react";
+import EbytrTasks from "./components/EbytrTasks";
 
 function App() {
   return (
-    <div>
-      <h1>OLá</h1>
-    </div>
+    <EbytrTasks/>
   );
 }
 

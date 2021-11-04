@@ -8,7 +8,7 @@ class ToDoList extends Component {
     return (
       <div>
         <ul>
-          { listTasks.map((task) => (<li key={task}>{task}</li>)) }
+          { listTasks.map((task) => (<li key={task}>{task.task} - {task.status}</li>)) }
         </ul>
       </div>
     );

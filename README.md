@@ -10,5 +10,4 @@ No diretório do projeto vc pode executar
 
 para executar a aplicação no momento de desenvolvimento.
 
-Runs the app in the development mode.\
 Abra [http://localhost:3000](http://localhost:3000) para vê-la no browser.

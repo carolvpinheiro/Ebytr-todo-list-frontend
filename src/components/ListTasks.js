@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import ToDoList from "./ToDoList";
 
 class InputTask extends Component {
@@ -12,7 +13,8 @@ class InputTask extends Component {
 
     this.handleInput = this.handleInput.bind(this);
     this.handleOption = this.handleOption.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
+    this.onSubmite = this.onSubmite.bind(this);
   }
 
   handleInput(event) {
@@ -27,12 +29,29 @@ class InputTask extends Component {
     });
   }
 
-  handleClick(event) {
-    event.preventDefault();
-    const { listTasks, inputTask, statusTask } = this.state;
+  // handleClick(event) {
+  //   event.preventDefault();
+  //   const { listTasks, inputTask, statusTask } = this.state;
+  //   this.setState({
+  //     listTasks: [...listTasks, { task: inputTask, status: statusTask }],
+  //     inputTask: ""
+  //   });
+  // }
+
+  onSubmite(e) {
+    e.preventDefault();
+
+    const newTask = {
+      task: this.state.inputTask,
+      status: this.state.statusTask
+    };
+
+    axios.post("http://localhost:5000/", newTask)
+    .then((res) => console.log(res.data));
+
     this.setState({
-      listTasks: [...listTasks, { task: inputTask, status: statusTask }],
-      inputTask: ""
+      inputTask: "",
+      statusTask: ""
     });
   }
 
@@ -42,15 +61,15 @@ class InputTask extends Component {
     return (
       <div>
 
-        <form>
+        <form onSubmit={this.onSubmite}>
         <input
           type="text"
           placeholder="Digite sua tarefa"
-          value={ inputTask }
-          onChange={ this.handleInput }
+          value={inputTask}
+          onChange={this.handleInput}
         />
-        <button onClick={ this.handleClick }>Adicionar</button>
-        <select onChange={ this.handleOption }>
+        <button onClick={this.handleClick}>Adicionar</button>
+        <select onChange={this.handleOption}>
           <option value="Pendente">Pendente</option>
           <option value="Em Anadamento">Em andamento</option>
           <option value="Pronto">Pronto</option>
